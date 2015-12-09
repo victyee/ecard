@@ -1,0 +1,23 @@
+<!-- Hero Banner
+================================================== -->
+
+<div id="intro">
+  <% card1=@cards.find(1) %>
+  <div class="item background-cover" style="background: url(<%= card1.image %>)">
+    <div class="container">
+      <div class="row">
+        <div class="carousel-caption-center colour-white">
+          <h2><%= card1.hashtag %></h2>
+          <h1><%= card1.name %></h1>
+          <p><%= card1.description %></p>
+          <p><%= link_to 'Open Card', card_path(card1), :class => 'btn btn-primary' %></p>
+          <div class="photo-credits">
+            <p><%= card1.copyright %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="overlay-bg"></div>
+  </div>
+</div>
+

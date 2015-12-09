@@ -1,0 +1,52 @@
+<!-- Testimonial -->
+<div id="tweets">
+  <% @tweets.each do |tweet| %>
+    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12 testimonial box-shadow box">
+      <% if tweet.user %>
+        <div class="display-pic">
+          <% if tweet.user.provider == 'twitter' %>
+            <%= link_to image_tag(tweet.user.profile_image), tweet.user.url, target: "_blank" %>
+          <% elsif tweet.user.provider == 'facebook' %>
+            <%= link_to image_tag(tweet.user.profile_image), "https://www.facebook.com/" + tweet.user.url, target: "_blank" %>
+          <% end %>
+        </div>
+      <% end %>
+
+<!--       <div class="photo">
+
+      </div> -->
+
+      <div class="testimonee">
+        <% if user_signed_in? %>
+          <% if current_user.admin? %>
+            <div class="actions topcorner">
+              <p>
+                <%= link_to 'X', card_tweet_delete_path(@card, tweet), remote: true %> |
+                <%= link_to 'O', card_tweet_path(@card,tweet), remote: true %>
+              </p>
+            </div>
+          <% end %>
+          <% if current_user.admin? == false and current_user.id == @card.user_id.to_f %>
+            <% if tweet.user_id != current_user.id %>
+              <div class="actions topcorner">
+                <p>
+                  <%= link_to 'X', card_tweet_delete_path(@card, tweet), remote: true %>
+                </p>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %>
+
+        <blockquote>
+          <p class="quote-text tweet-body"><%= tweet.body %></p>
+          <% if tweet.user.provider == 'twitter' %>
+            <p class="quote-source"><i class="fa fa-twitter fa-twitter-blue"></i> <%= link_to tweet.user.name + '@' + tweet.user.nickname, tweet.user.url, target: "_blank" %></a></p>
+          <% elsif tweet.user.provider == 'facebook' %>
+            <p class="quote-source"><i class="fa fa-facebook fa-facebook-blue"></i> <a href="https://www.facebook.com/<%= tweet.user.url %>" target="_blank"><%= tweet.user.name %></a></p>
+          <% end %>
+        </blockquote>
+        <h4 class="date"><%= tweet.created_at.strftime("%b %d, %Y") %></h4>
+      </div>
+    </div>
+  <% end %>
+</div>

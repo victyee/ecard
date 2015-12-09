@@ -1,0 +1,11 @@
+$('#posts').append("<%= escape_javascript(render 'tweets/tweets') %>").masonry({
+    itemSelector: '.box'
+  });
+
+
+<% if @tweets.next_page %>
+   $('.pagination').replaceWith('<%= escape_javascript will_paginate(@tweets) %>');
+<% else %>
+   // $('.pagination').replaceWith("<h1>End of Card</h1>");
+   $('.pagination').replaceWith();
+<% end %>

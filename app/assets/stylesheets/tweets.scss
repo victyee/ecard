@@ -1,0 +1,364 @@
+// Place all the styles related to the Tweets controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+
+.clearfix:before, .clearfix:after { content: ""; display: table; }
+.clearfix:after { clear: both; }
+.clearfix { zoom: 1; }
+
+
+
+$color_purple: #5133AB;
+$color_red: #AC193D;
+$color_orange: #DC572E;
+$color_green: #00A600;
+$color_blue: #2672EC;
+$color_white: #FFF;
+
+// colors from http://www.creepyed.com/2012/09/windows-8-colors-hex-code/
+
+$base_font_size: 14px;
+$base_line_height: 1.5em;
+$text_font_family: 'Open Sans', "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+$display_font_family: 'Open Sans', "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+
+body {
+	font-family: $text_font_family;
+	font-size: $base_font_size;
+	line-height: $base_line_height;
+	font-weight: 400;
+}
+
+p, span, a, ul, li, button {
+	font-family: inherit;
+	font-size: inherit;
+	font-weight: inherit;
+	line-height: inherit;
+}
+
+strong {
+	font-weight: 600;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: $display_font_family;
+	line-height: $base_line_height;
+	font-weight: 300;	
+}
+
+strong {
+  font-weight: 400;
+}
+
+.tile {  
+  width: 300px;
+  height: 200px;
+	display: inline-block;
+	box-sizing: border-box;
+	background: #fff;		
+	padding: 10px;
+	margin-bottom: 15px;
+	border: 1px solid #ddd;
+  
+  .title {
+		margin-top: 0px;
+	}
+  
+  &.purple, &.blue, &.red, &.orange, &.green {
+    color: #fff;
+  }
+  
+  &.purple {
+    background: $color_purple;
+
+		&:hover {
+			background: darken($color_purple, 10%);
+		}		
+  }
+  
+  &.red {
+    background: $color_red;
+
+		&:hover {
+			background: darken($color_red, 10%);
+		}		
+  }
+  
+  &.green {
+    background: $color_green;
+
+		&:hover {
+			background: darken($color_green, 10%);
+		}		
+  }
+  
+  &.blue {
+    background: $color_blue;
+
+		&:hover {
+			background: darken($color_blue, 10%);
+		}	
+  }
+  
+  &.orange {
+    background: $color_orange;
+
+		&:hover {
+			background: darken($color_orange, 10%);
+		}	
+  }
+}
+
+
+/*TESTIMONIALS*/
+
+section .page-header {
+  margin-top: 0;
+}
+section .page-header > h1 {
+  margin-top: -0.3em !important;
+}
+
+section.content {
+  /*border-bottom: 4px solid #273646 !important;*/
+}
+
+section#quotes {
+  padding: 3em 0;
+}
+section#testimonials {
+  padding-bottom: 4em;
+  background-color: #f6f6f6;
+}
+section#testimonials .row {
+  margin: 0 0 3em;
+}
+
+
+
+.quote.large {
+  font-size: 2em;
+}
+.quote.large blockquote {
+  position: relative;
+  border: 0;
+  padding: 0;
+  margin-bottom: 0;
+  visibility: hidden;
+}
+.quote.large blockquote p {
+  line-height: 1.4em;
+}
+.quote.large blockquote .quote-start,
+.quote.large blockquote .quote-end {
+  color: #dddddd;
+  font-size: 2em;
+}
+.quote.large blockquote .quote-start {
+  position: absolute;
+  top: -0.3em;
+  left: -0.2em;
+}
+.quote.large blockquote .quote-end {
+  position: absolute;
+  bottom: -0.77em;
+  right: -0.2em;
+}
+.quote.large blockquote .quote-text {
+  font-size: 0.95em;
+  font-weight: 600;
+  margin-bottom: 0;
+  padding: 0 0.5em;
+}
+.quote.large blockquote .quote-source {
+  font-size: 0.7em;
+  text-align: right;
+  color: #aaaaaa;
+  margin: 0 1.4em 0 0;
+}
+.quote.small {
+  font-size: 1em;
+}
+.quote.small blockquote {
+  position: relative;
+  border: 0;
+  padding: 0;
+}
+.quote.small blockquote .quote-start,
+.quote.small blockquote .quote-end {
+  color: #dddddd;
+  font-size: 2em;
+}
+.quote.small blockquote .quote-start {
+  position: absolute;
+  top: -0.2em;
+  left: -0.2em;
+}
+.quote.small blockquote .quote-end {
+  position: absolute;
+  bottom: 0.5em;
+  right: -0.2em;
+}
+.quote.small blockquote .quote-text {
+  font-size: 0.77em;
+  padding: 0 0.7em;
+}
+.quote.small blockquote .quote-source {
+  font-size: 0.75em;
+  color: #aaaaaa;
+  margin-top: 1.4em;
+  margin-right: 0;
+}
+.quote.small blockquote .quote-source a {
+  color: #aaaaaa;
+}
+.fa-twitter-blue {
+  color: #4099FF;
+}
+.fa-facebook-blue {
+  color: #3b5998;
+}
+.testimonial {
+  text-align: center;
+  padding: 5px;
+
+}
+.testimonial .display-pic img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  // box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.testimonial .testimonee {
+  background: white;
+  margin: -4em 0.3em 0.3em;
+  padding: 5.5em 1.5em 1.5em;
+  border-radius: 3px;
+  box-shadow: 0 0 3px rgba(216, 216, 216, 0.7);
+}
+.testimonial .photo {
+  height: 250px;
+  background: white;
+  margin: -4em 0.3em 0.3em;
+  padding: 5.5em 1.5em 1.5em;
+  border-radius: 3px;
+  box-shadow: 0 0 3px rgba(216, 216, 216, 0.7);
+}
+
+.quote.large blockquote .quote-text {
+  font-size: 0.95em;
+  font-weight: 600;
+  margin-bottom: 0;
+  padding: 0 0.5em;
+}
+
+.tweet-body {
+  color: #404040;
+}
+
+.date {
+  font-size: 0.8em;
+  color: #aaaaaa;
+  margin-top: -20px;
+  font-weight: 600;
+  margin-bottom: 1px;
+}
+
+.red {
+  color: red;
+  font-size: 30px;
+}
+
+.heart-color,
+.heart-color:hover,
+.heart-color:active,
+.heart-color:focus {
+  color: #e3695c;
+  text-decoration: none;
+}
+
+.heart-color a:hover
+.heart-color a:active,
+.heart-color a:focus, {
+  text-decoration: none;
+}
+
+
+.thumb-color,
+.thumb-color:hover,
+.thumb-color:active,
+.thumb-color:focus {
+  color: #404040;
+  text-decoration: none;
+}
+
+
+.user-votes {
+  font-size: 0.85em;
+  margin-top: 20px;
+}
+
+.vote-up:hover #heart-empty,
+.vote-up #heart-full {
+    display: none;
+    text-decoration: none;
+}
+.vote-up:hover #heart-full {
+    display: inline;
+    text-decoration: none;
+}
+
+.vote-down:hover #thumb-empty,
+.vote-down #thumb-full {
+    display: none;
+    text-decoration: none;
+}
+.vote-down:hover #thumb-full {
+    display: inline;
+    text-decoration: none;
+}
+
+.lock:hover .icon-unlock,
+.lock .icon-lock {
+    display: none;
+    text-decoration: none;
+}
+.lock:hover .icon-lock {
+    display: inline;
+    text-decoration: none;
+}
+
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+  z-index: 2;
+  color: white;
+  cursor: default;
+  background-color: #e3695c;
+  border-color: #e3695c;
+}
+
+.pagination > li > a,
+.pagination > li > span {
+  position: relative;
+  float: left;
+  padding: 6px 12px;
+  margin-left: -1px;
+  line-height: 1.42857143;
+  color: #e3695c;
+  text-decoration: none;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+.no-shadow {
+  box-shadow: 0 0 3px red;
+}

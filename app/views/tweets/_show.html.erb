@@ -1,0 +1,29 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-body">
+      
+      <div class="testimonial box-shadow box">
+        <% if current_user.admin? %>
+          <p>Tweet: <%= @tweet.id %></p>
+        <% end %>
+        <div class="display-pic">
+          <%= link_to image_tag(@tweet.user.profile_image), @tweet.user.url, target: "_blank" %>
+        </div>
+        <div class="testimonee" style="box-shadow:none;">
+          <blockquote>
+            <p class="quote-text tweet-body"><%= @tweet.body %></p>
+            <% if @tweet.user.provider == 'twitter' %>
+              <p class="quote-source"><i class="fa fa-twitter fa-twitter-blue"></i> <%= link_to @tweet.user.name + '@' + @tweet.user.nickname, @tweet.user.url, target: "_blank" %></a></p>
+            <% elsif @tweet.user.provider == 'facebook' %>
+              <p class="quote-source"><i class="fa fa-facebook fa-facebook-blue"></i> <a href="https://www.facebook.com/<%= @tweet.user.url %>" target="_blank"><%= @tweet.user.name %></a></p>
+            <% end %>
+          </blockquote>
+          <p class="date"><%= @tweet.created_at.strftime("%b %d, %Y") %></p>
+        </div>
+        <%= link_to 'Delete', @tweet, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-message-submit' %>
+        <button type="button" class="btn btn-white" data-dismiss="modal">Close</button><p><%= @card_number %></p>
+      </div>
+
+    </div>
+  </div>
+</div>

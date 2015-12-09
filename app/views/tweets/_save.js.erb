@@ -1,0 +1,4 @@
+$(".product-index").html("<%= escape_javascript(render 'tweets') %>").masonry({
+    itemSelector: '.box'
+  })
+$("#product-modal").modal("hide")

@@ -1,0 +1,68 @@
+<%= form_for@card, html: { multipart: true, class: 'form-horizontal' } do |f| %>
+  <% if @card.errors.any? %>
+  <% end %>
+
+  <fieldset>
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-sm-4 control-label" for="textinput"><%= f.label :title %> *</label>  
+      <div class="col-sm-4">
+      <%= f.text_field :name, placeholder: "Peter McCoy", class: 'form-control input-lg', required: "" %>
+      <span class="help-block">Card's title / name of the person receiving this card</span>  
+      </div>
+    </div>
+
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-sm-4 control-label" for="textinput"><%= f.label :hashtag %></label>  
+      <div class="col-sm-4">
+      <%= f.text_field :hashtag, placeholder: "#peters21st", class: 'form-control input-lg' %>
+      <span class="help-block">Make it social!</span>  
+      </div>
+    </div>
+
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-sm-4 control-label" for="textinput"><%= f.label :date %> *</label>  
+      <div class="col-sm-4">
+      <%= f.text_field :date, placeholder: "21st January 2016", class: 'form-control input-lg', required: "" %>
+      <span class="help-block">When's the card for?</span>  
+      </div>
+    </div>
+
+    <!-- Textarea -->
+    <div class="form-group">
+      <label class="col-sm-4 control-label" for="textarea"><%= f.label :description %> *</label>
+      <div class="col-sm-4">
+        <%= f.text_area :description, class: 'form-control', id: 'textarea', rows: '3', maxlength: '150', required: ""  %>                     
+        <span class="help-block" style="float:left">What's the card for?</span><div id="textarea_feedback"></div> 
+      </div>
+    </div>
+
+    <!-- File Button --> 
+    <div class="form-group">
+      <label class="col-sm-4 control-label" for="filebutton"><%= f.label :image %> </label>
+      <div class="col-sm-4">
+        <%= f.file_field :image, id: 'filebutton', class: 'input-file file-button', type: 'file' %>
+        <span class="help-block">Background photo for the card</span>  
+      </div>
+    </div>
+
+    <!-- Text input-->
+    <% if current_user.admin %>
+    <div class="form-group">
+      <label class="col-sm-4 control-label" for="textinput"><%= f.label :copyright %></label>  
+      <div class="col-sm-4">
+        <%= f.text_field :copyright, id: 'textinput', type: 'text', placeholder: 'Photo: AP Photo/Cliff Schiappa', class: 'form-control input-lg' %>
+      </div>
+    </div>
+    <% end %>
+  </fieldset>
+
+  <div class="text-center">
+    <%= f.submit 'Submit', class: 'btn btn-message-submit' %>
+    <%= link_to 'Cancel', :back, :class => 'btn btn-message-submit btn-cancel-white' %>
+  </div>
+<% end %>
+
+

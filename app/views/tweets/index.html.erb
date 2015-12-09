@@ -1,0 +1,30 @@
+
+
+<h1>Listing Tweets</h1>
+
+<div id="tweets" class="transitions-enabled">
+  <% @tweets.each do |tweet| %>
+    <div class="box panel panel-default" style="height: 200px; width: 200px;">
+      
+      <div class="panel-body">
+        <%= link_to image_tag(tweet.user.profile_image), tweet %>
+        <%= link_to 'show', tweet_path(tweet) %>
+        <p><%= tweet.body %></p>
+        <p><strong><%= tweet.user.name if tweet.user %></strong></p>
+
+        <% if current_user && tweet.user == current_user %>
+          <div class="actions">
+            <%= link_to edit_tweet_path(tweet) do %>
+              <span class="glyphicon glyphicon-pencil"></span> Edit
+            <% end %>
+            <%= link_to tweet, method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <span class="glyphicon glyphicon-trash"></span> Delete
+            <% end %>
+          </div>
+        <% end %>
+
+      </div>
+    </div>
+  <% end %>
+</div>
+

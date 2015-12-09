@@ -1,0 +1,54 @@
+<section id="pricing" class="dark mycards-bg">
+
+ <div class="page-header text-center">
+   </br></br></br>
+   <h2>Admin Evercards</h2>
+ </div>
+
+ <div class="container">
+   <div class="row">
+      <div class="plans">
+        <div class="col-xs-12 col-sm-6 col-md-3">
+          <%= link_to create_path do %>
+            <div class="plan">
+              <div class="plan-title"></div>
+              <ul class="plan-features">
+                <li style="height: 291px; background-color: #e3695c; color:white; border-bottom: 1px solid #e3695c; font-size: 22px;">Create Evercard</li>
+              </ul>
+            </div>
+          <% end %>
+        </div>
+
+        <% @cards.each do |card| %>
+          <% if card.admin_card == true %>
+            <div class="col-xs-12 col-sm-6 col-md-3">
+              <%= link_to card_path(card.slug) do %>
+                <div class="plan">
+                  <% if !(card.image.content_type =~ /^image/).nil? %>
+                    <div class="plan-title" style="background: url(<%= card.image %>) center center no-repeat; background-size:cover;"></div>
+                  <% else %>
+                    <div class="plan-title" style="background: url('../assets/placeholder.png') center center no-repeat; background-size:cover;"></div>
+                  <% end %>
+                  <ul class="plan-features">
+                    <% if current_user.admin? %>
+                      <li>Card ID: <%= card.id %></li>
+                    <% end %> 
+                    <li><%= card.name %></li>
+                    <% if card.tweets.count > 0 %>
+                      <li><%= card.tweets.count %> <%= "Message".pluralize(card.tweets.count) %></li>
+                    <% else %>
+                      <li>No Messages</li>
+                    <% end %>
+                    <li>Created on: <%= card.created_at.strftime("%b %d, %Y") %></li>
+                    <li><%= link_to 'Delete', card, method: :delete, data: { confirm: 'Are you sure?' } %> | <%= link_to 'Edit', edit_card_path(card) %></li>
+                  </ul>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <%= will_paginate @cards, renderer: BootstrapPagination::Rails %>
+  </div>
+</section>

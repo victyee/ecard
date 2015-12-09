@@ -1,0 +1,11 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>Confirm?</h3>
+    </div>
+
+    <div class="modal-footer">
+      <%= link_to "Yes, Delete This Tweet", @tweet, method: :delete, remote: true, class: "btn btn-danger" %>
+    </div>
+  </div>
+</div>

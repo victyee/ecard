@@ -1,0 +1,103 @@
+<% if !(@card.image.content_type =~ /^image/).nil? %>
+<section id="about" class="content text-center light" style="background: url(<%= @card.image %>) center center no-repeat; background-size:cover;">
+<% else %>
+<section id="about" class="content text-center dark with-bg">
+<% end %> 
+
+  <br><br><br><br><br>
+  <div class="container">
+    <!-- Three columns of text below the carousel -->
+    <div class="row">
+      <div class="col-lg-12 overlay-text white">
+        <h2 class="shadow"><%= @card.name %></h2>
+        <p class="card-description" style="color: rgba(255, 255, 255, 0.6);"><%= @card.description %></p>
+
+        <% if @card.hashtag.length > 0 %>
+          <h4 class="card-info"><%= @card.hashtag %> | <%= @card.date %></br>
+        <% else %>
+          <h4 class="card-info"><%= @card.date %></br>
+        <% end %> 
+            Created by 
+            <% if @user.provider == 'twitter' %>
+              <%= link_to @user.name, @user.url, target: "_blank" %>
+            <% elsif @user.provider == 'facebook' %>
+              <%= link_to @user.name, "https://www.facebook.com/" + @user.url, target: "_blank" %>
+            <% end %>
+          </h4>
+
+        <% if @card_tweet_count > 0 %>
+          <h3 class="shadow"><%= @card_tweet_count %> <%= "Message".pluralize(@card_tweet_count) %></h3>
+        <% end %>
+        
+        <% if user_signed_in? %>
+          <% if @user_tweet_count > 0 %>
+            <% if current_user.admin == false %>
+              <% @user_tweets.each do |tweet| %>
+                <p><%= link_to 'My Message', card_tweet_path(@card,tweet.id), remote: true, :class => 'btn btn-message-submit' %></p>
+              <% end %>
+            <% end %> 
+          <% else %>
+            <br>
+            <% if @card_tweet_count > 0 %>
+              <h4>Your Message</h4>
+              <%= form_for([@card, @card.tweets.build]) do |f| %>
+                <h4><%= f.text_area :body %></h4>
+                <p><%= f.submit 'Submit', :class => 'btn btn-message-submit' %></p>
+              <% end %>
+            <% else %>
+              <h4>Be The First!</h4>
+              <%= form_for([@card, @card.tweets.build]) do |f| %>
+                <h4><%= f.text_area :body %></h4>
+                <p><%= f.submit 'Submit', :class => 'btn btn-message-submit' %></p>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% else %>
+          <p>
+            <a href="../users/auth/twitter"><button class="btn btn-twitter twitter-blue btn-width"><i class="fa fa-twitter"></i> | Tweet Your Message</button></a> <a href="../users/auth/facebook"><button class="btn btn-facebook facebook-blue btn-width"><i class="fa fa-facebook"></i> | Post Your Message</button></a>
+          </p>
+        <% end %>
+      </div><!-- /.col-lg-12 -->
+    </div><!-- /.row -->
+  </div>
+
+  <% if !(@card.image.content_type =~ /^image/).nil? %>
+  <div class="overlay-bg2"></div>
+  <% else %>
+  <div class="overlay-bg3"></div>
+  <% end %>
+
+</section>
+
+
+<% if @card.tweets %>
+  <section id="testimonials" class="content section quote small">  
+    <div class="row">
+      <div class="col-lg-12">
+        <div id="posts" class="product-index">
+          <%= render 'tweets/tweets' %>
+        </div>
+        <div id="product-modal" class="modal fade"></div>
+        <div id="show-tweet" class="modal fade"></div>
+      </div>
+    </div>
+
+    <%= javascript_tag do %>
+      <% if current_user && current_user.admin == true %>
+        isadminuser = 'yes'
+      <% else %>
+        isadminuser = 'no'
+      <% end %>
+    <% end %>
+
+    <% if current_user && current_user.admin == true %>
+      <%= will_paginate @tweets %>
+    <% else %>
+      <div class="pagination-hidden">
+        <%= will_paginate @tweets %>
+      </div>
+    <% end %>
+
+  </section> <!-- end Testimonials Section -->
+<% end %>
+

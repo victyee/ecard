@@ -1,0 +1,51 @@
+
+
+<!-- NAVBAR
+================================================== -->
+<div class="navbar-wrapper cbp-af-header">
+  <div class="container">
+
+    <!-- Fixed navbar -->
+    <div class="navbar cbp-af-inner" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <h1><a class="navbar-brand scroll" href="/">evercard</a></h1>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav pull-right">
+          	
+            <% if current_user == nil %>
+              <li><%= link_to 'Log In', login_path %></li>
+              <li><%= link_to 'Create Evercard', login_path %></li>
+            <% end %>
+
+            <% if current_user %>
+              <% if current_user.admin %>
+                <li><%= link_to 'Admin Evercards', admincards_path %></li>
+                <li><%= link_to 'Users Evercards', alluserscards_path %></li>
+              <% else %>
+                <li><%= link_to 'My Evercards', mycards_path %></li>
+                <li><%= link_to 'New Evercard', new_card_path %></li>
+              <% end %>
+			        <li><%= link_to 'Sign Out', destroy_user_session_path %></li>
+              <% if current_user.admin %>
+                <li><%= link_to 'Admin Create', new_card_path %></li>
+              <% end %>
+           	<% end %>
+
+            <li><a href="https://twitter.com/evercardco" target="_blank"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://www.facebook.com/evercardco/" target="_blank"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="mailto:hello.evercard@gmail.com" target="_blank"><i class="fa fa-envelope"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

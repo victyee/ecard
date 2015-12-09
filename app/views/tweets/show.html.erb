@@ -1,0 +1,29 @@
+<section id="testimonials" class="content section quote small">  
+  <div class="row">
+    <div class="col-sm-2 col-sm-offset-5">
+      <div class="row tweets" id="tweets">
+        <div class="testimonial box-shadow box">
+        	<div class="display-pic">
+            <%= link_to image_tag(@tweet.user.profile_image), @tweet.user.url, target: "_blank" %>
+          </div>
+          <div class="testimonee">
+            <blockquote>
+              <span class="quote-start">“</span>
+              <p class="quote-text tweet-body"><%= @tweet.body %></p>
+              <% if @tweet.user.provider == 'twitter' %>
+                <p class="quote-source"><i class="fa fa-twitter fa-twitter-blue"></i> <%= link_to @tweet.user.name + '@' + @tweet.user.nickname, @tweet.user.url, target: "_blank" %></a></p>
+              <% elsif @tweet.user.provider == 'facebook' %>
+                <p class="quote-source"><i class="fa fa-facebook fa-facebook-blue"></i> <a href="https://www.facebook.com/<%= @tweet.user.url %>" target="_blank"><%= @tweet.user.name %></a></p>
+              <% end %>
+
+              <span class="quote-end">”</span>
+            </blockquote>
+            <p class="date"><%= @tweet.created_at.strftime("%b %d, %Y") %></p>
+          </div>
+          <%= link_to 'Delete', @tweet, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-message-submit' %>
+          <%= link_to 'Back', card_path(@card), :class => 'btn btn-white' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> <!-- end Testimonials Section -->
